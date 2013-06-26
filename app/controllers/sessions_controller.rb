@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   def new; end
 
   def create 
-    # Logs user in
     user = User.find_by_username(params[:session])
     if user && user.authenticate(params[:session])
       session[:current_user_id] = user.id
@@ -13,7 +12,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # Logs user out
     session[:current_user_id] = nil
     redirect_to root_url
   end
