@@ -2,10 +2,10 @@ class SessionsController < ApplicationController
   def new; end
 
   def create 
-    user = User.find_by_username(params[:session])
-    if user && user.authenticate(params[:session])
-      session[:current_user_id] = user.id
-      redirect_to user
+    @user = User.find_by_username(params[:session][:username])
+    if @user && @user.authenticate(params[:session][:password])
+      session[:current_user_id] = @user.id
+      redirect_to new_question_path
     else 
       render 'new'
     end
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:current_user_id] = nil
-    redirect_to root_url
+    redirect_to login_path
   end
 
   private
