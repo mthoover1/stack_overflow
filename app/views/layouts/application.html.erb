@@ -9,9 +9,17 @@
 </head>
 <body>
 
-  <h1>StackOverfluff</h1>
+  <header>
+    <h1>StackOverfluff</h1>
+  </header>
 
-<%= yield %>
+  <nav>
+    <%= render "shared/anonmenu" %>
+  </nav>
+  
+  <div id="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
